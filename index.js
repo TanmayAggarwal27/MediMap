@@ -16,6 +16,12 @@ app.use(checkForAuthenticationCookie("token"));
 app.set("view engine","ejs")
 app.set("views", path.join(__dirname, "views"));
 
+app.get("/",(req,res)=>{
+    res.render("home")
+})
+app.get("/about",(req,res)=>{
+    res.render("about")
+})
 app.use("/",authRouter)
 app.use("/",mediRouter)
 

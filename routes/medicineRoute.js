@@ -8,7 +8,7 @@ const {validateToken,checkForAuthenticationCookie, requireAuth }= require("../ut
 router.get("/add", requireAuth,(req, res) => {
     res.render("addMedicines"); 
   });
-router.post("/add", requireAuth, async (req, res) => {
+  router.post("/add", requireAuth, async (req, res) => {
     try {
       const medicines = req.body.medicines; // array of selected medicines
       const chemistId = req.user._id;
@@ -18,11 +18,20 @@ router.post("/add", requireAuth, async (req, res) => {
       }
   
       const insertedMeds = [];
+      const skippedMeds = [];
   
       for (const med of medicines) {
         const { name, salt, price } = med;
   
         if (!name || !salt || !price) continue;
+  
+        // Check if medicine with the same name already exists (case-insensitive)
+        const existing = await Medicine.findOne({ name: new RegExp(`^${name}$`, "i") });
+  
+        if (existing) {
+          skippedMeds.push(name);
+          continue;
+        }
   
         const newMed = new Medicine({
           name,
@@ -35,11 +44,12 @@ router.post("/add", requireAuth, async (req, res) => {
         insertedMeds.push(newMed);
       }
   
-      res.status(201).json({ message: "Medicines added successfully", medicines: insertedMeds });
+        res.redirect("/all")
     } catch (err) {
       res.status(500).json({ message: "Something went wrong", error: err.message });
     }
   });
+  
   
 router.get("/all", async (req, res) => {
     try {
@@ -54,7 +64,7 @@ router.get("/all", async (req, res) => {
           ]
         }).populate("createdBy", "username email address");
       } else {
-        meds = await Medicine.find().populate("createdBy", "username email address");
+        meds = await Medicine.find().populate("createdBy", "username email address phoneNumber");
       }
   
       res.render("medicines", { medicines: meds });

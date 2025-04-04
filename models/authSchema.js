@@ -20,6 +20,14 @@ const UserSchema = new mongoose.Schema({
         unique:true,
 
 
+    },
+    pincode:{
+        type:Number,
+        required:true
+    },
+    phoneNumber:{
+        type:Number,
+        required:true
     }
 })
 

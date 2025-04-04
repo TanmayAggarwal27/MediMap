@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PharmaConnect | Seller Portal</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -35,7 +35,6 @@
             align-items: center;
             min-height: 100vh;
             position: relative;
-        
         }
 
         .background-pattern {
@@ -48,7 +47,7 @@
             z-index: -1;
         }
 
-        .login-container {
+        .signup-container {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -64,12 +63,12 @@
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
 
-        .login-container:hover {
+        .signup-container:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
         }
 
-        .login-container::before {
+        .signup-container::before {
             content: '';
             position: absolute;
             top: 0;
@@ -138,6 +137,9 @@
 
         .form-group:nth-child(1) { animation-delay: 0.1s; }
         .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
 
         label {
             display: block;
@@ -147,7 +149,7 @@
             font-weight: 500;
         }
 
-        input {
+        input, select {
             width: 100%;
             padding: 14px 18px;
             border: 2px solid #e9ecef;
@@ -157,7 +159,7 @@
             background-color: rgba(248, 249, 250, 0.8);
         }
 
-        input:focus {
+        input:focus, select:focus {
             border-color: var(--primary);
             background-color: white;
             box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.1);
@@ -172,34 +174,35 @@
             font-size: 16px;
         }
 
-        .forgot-password {
-            text-align: right;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.6s 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin: 24px 0;
+            text-align: left;
+            animation: fadeInUp 0.6s 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         }
 
-        .forgot-password a {
+        .terms input {
+            width: auto;
+            margin-right: 12px;
+            margin-top: 4px;
+        }
+
+        .terms label {
+            font-size: 13px;
+            color: var(--gray);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .terms a {
             color: var(--primary);
             text-decoration: none;
-            font-size: 14px;
             font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
         }
 
-        .forgot-password a:hover {
-            color: var(--secondary);
-        }
-
-        .forgot-password a i {
-            margin-left: 6px;
-            font-size: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .forgot-password a:hover i {
-            transform: translateX(3px);
+        .terms a:hover {
+            text-decoration: underline;
         }
 
         .btn {
@@ -215,7 +218,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            animation: fadeInUp 0.6s 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+            animation: fadeInUp 0.6s 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         }
 
         .btn-primary {
@@ -242,7 +245,7 @@
             color: var(--gray);
             font-size: 13px;
             font-weight: 500;
-            animation: fadeInUp 0.6s 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+            animation: fadeInUp 0.6s 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         }
 
         .divider::before, .divider::after {
@@ -259,57 +262,13 @@
             margin-left: 16px;
         }
 
-        .social-login {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 28px;
-            animation: fadeInUp 0.6s 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-        }
-
-        .btn-social {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background-color: white;
-            border: 2px solid #e9ecef;
-            color: var(--dark);
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .btn-social:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-google {
-            color: #DB4437;
-        }
-
-        .btn-google:hover {
-            border-color: rgba(219, 68, 55, 0.3);
-            background-color: rgba(219, 68, 55, 0.05);
-        }
-
-        .btn-apple {
-            color: #000;
-        }
-
-        .btn-apple:hover {
-            border-color: rgba(0, 0, 0, 0.3);
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-
-        .signup-link {
+        .login-link {
             font-size: 15px;
             color: var(--gray);
-            animation: fadeInUp 0.6s 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+            animation: fadeInUp 0.6s 0.9s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         }
 
-        .signup-link a {
+        .login-link a {
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
@@ -317,7 +276,7 @@
             margin-left: 6px;
         }
 
-        .signup-link a:hover {
+        .login-link a:hover {
             color: var(--secondary);
             text-decoration: underline;
         }
@@ -355,8 +314,36 @@
             100% { transform: translate(100px, -1000px) rotate(720deg); }
         }
 
+        /* Password strength indicator */
+        .password-strength {
+            height: 4px;
+            background: #e9ecef;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .strength-meter {
+            height: 100%;
+            width: 0;
+            background: var(--gray);
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak { background: #ff6b6b; width: 30%; }
+        .strength-medium { background: #ffbe0b; width: 60%; }
+        .strength-strong { background: var(--success); width: 100%; }
+
+        .strength-text {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 4px;
+            text-align: right;
+        }
+
         @media (max-width: 576px) {
-            .login-container {
+            .signup-container {
                 padding: 40px 28px;
                 margin: 0 20px;
                 border-radius: 20px;
@@ -387,49 +374,67 @@
     <div class="molecule" style="top: 40%; left: 30%; animation-delay: 4s;"></div>
     <div class="molecule" style="top: 60%; left: 60%; animation-delay: 6s;"></div>
     
-    <div class="login-container">
+    <div class="signup-container">
         <div class="pharma-icon">
-            <i class="fas fa-pills"></i>
+            <i class="fas fa-user-plus"></i>
         </div>
-        <h1>Welcome to MediMap</h1>
-        <p class="subtitle">Sign in to your seller account to manage pharmaceutical inventory and orders</p>
+        <h1>Create Seller Account</h1>
+        <p class="subtitle">Join MediMap to manage your pharmaceutical business online</p>
         
-        <form>
+        <form type="submit" method="post">
             <div class="form-group">
-                <label for="email">Professional Email</label>
-                <input type="email" id="email" placeholder="your@pharmacy.com" required>
+                <label for="pharmacy-name">Pharmacy Name</label>
+                <input type="text" id="pharmacy-name" name="username" placeholder="Your Pharmacy Name" required>
+                <i class="input-icon fas fa-store"></i>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" >Professional Email</label>
+                <input type="email" name="email" id="email" placeholder="your@pharmacy.com" required>
                 <i class="input-icon fas fa-envelope"></i>
             </div>
             
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <i class="input-icon fas"></i>
+                <input type="password" id="password" placeholder="Create a password" name="password" required>
+                <i class="input-icon fas fa-lock"></i>
+                <div class="password-strength">
+                    <div class="strength-meter" id="strength-meter"></div>
+                </div>
+                <div class="strength-text" id="strength-text">Password strength</div>
             </div>
             
-            <div class="forgot-password">
-                <a href="#">Forgot password? <i class="fas fa-chevron-right"></i></a>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+91 _____-_____" minlength="10" maxlength="10" name="phoneNumber">
+                <i class="input-icon fas fa-phone"></i>
+            </div>
+
+            <div class="form-group">
+                <label for="pincode">Pin Code</label>
+                <input type="tel" id="pincode" placeholder="110001" maxlength="6" minlength="6" name="pincode" required>
+                <i class="input-icon fas "></i>
+            </div>
+
+            <div class="form-group">
+                <label for="store adress">Store Adress</label>
+                <input type="text" id="adress" placeholder="Enter Full Enter" name="address" required>
+                <i class="input-icon fas "></i>
+            </div>
+
+            
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>, and confirm that I am a licensed pharmaceutical professional.</label>
             </div>
             
             <button type="submit" class="btn btn-primary">
-                <i class="fas fa-sign-in-alt"></i> Sign In
+                <i class="fas fa-user-plus"></i> Create Account
             </button>
             
-            <div class="divider">or continue with</div>
+            <div class="divider">Already have an account?</div>
             
-            <div class="social-login">
-                <button type="button" class="btn btn-social btn-google">
-                    <i class="fab fa-google"></i>
-                    Google Account
-                </button>
-                
-                <button type="button" class="btn btn-social btn-apple">
-                    <i class="fab fa-apple"></i>
-                    Apple ID
-                </button>
-            </div>
-            
-            <p class="signup-link">New to PharmaConnect?<a href="#">Create account</a></p>
+            <p class="login-link">Sign in to your existing account<a href="/login">Sign In</a></p>
         </form>
     </div>
 
@@ -447,6 +452,44 @@
                 molecule.style.opacity = Math.random() * 0.3 + 0.1;
                 body.appendChild(molecule);
             }
+
+            // Password strength indicator
+            const passwordInput = document.getElementById('password');
+            const strengthMeter = document.getElementById('strength-meter');
+            const strengthText = document.getElementById('strength-text');
+
+            passwordInput.addEventListener('input', function() {
+                const password = passwordInput.value;
+                let strength = 0;
+                
+                // Length check
+                if (password.length >= 8) strength += 1;
+                if (password.length >= 12) strength += 1;
+                
+                // Character variety checks
+                if (password.match(/[A-Z]/)) strength += 1;
+                if (password.match(/[a-z]/)) strength += 1;
+                if (password.match(/[0-9]/)) strength += 1;
+                if (password.match(/[^A-Za-z0-9]/)) strength += 1;
+                
+                // Update the strength meter
+                strengthMeter.className = 'strength-meter';
+                if (password.length === 0) {
+                    strengthText.textContent = 'Password strength';
+                } else if (strength <= 2) {
+                    strengthMeter.classList.add('strength-weak');
+                    strengthText.textContent = 'Weak';
+                    strengthText.style.color = '#ff6b6b';
+                } else if (strength <= 4) {
+                    strengthMeter.classList.add('strength-medium');
+                    strengthText.textContent = 'Medium';
+                    strengthText.style.color = '#ffbe0b';
+                } else {
+                    strengthMeter.classList.add('strength-strong');
+                    strengthText.textContent = 'Strong';
+                    strengthText.style.color = '#06d6a0';
+                }
+            });
         });
     </script>
 </body>

@@ -7,9 +7,11 @@ const tokenGenerate = require("../utils/auth");
 
 // Signup
 
-
+router.get("/signup",(req,res)=>{
+    res.render("signupPage")
+})
 router.post("/signup", async (req, res) => {
-    const { username, email, password,address } = req.body;
+    const { username, email, password,address,pincode,phoneNumber } = req.body;
     let user = await userData.findOne({ email });
     let hashPass = await bcrypt.hash(password, 15);
 
@@ -21,6 +23,8 @@ router.post("/signup", async (req, res) => {
         email,
         password: hashPass,
         address,
+        pincode,
+        phoneNumber
     });
     await user.save();
     res.redirect("/login");
