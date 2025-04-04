@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const userData = require("../models/authSchema");
 const tokenGenerate = require("../utils/auth");
 
+
 // Signup
 
 
@@ -44,7 +45,8 @@ router.post("/login", async (req, res) => {
         }
 
         const token = await tokenGenerate.createTokenUser(user);
-        res.cookie("token", token).redirect("/userPage");
+        res.cookie("token", token)
+        res.status(200).json({message:"account created"})
     } catch (error) {
         console.log(error);
         return res.render("/login", {
@@ -55,7 +57,8 @@ router.post("/login", async (req, res) => {
 
 // Logout
 router.post("/logout", (req, res) => {
-    res.clearCookie("token").redirect("/");
+    res.clearCookie("token");
+    res.status(200).json({message:"logged out"})
 });
 
 module.exports = router;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medicines</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .search-box input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      outline: none;
+    }
+
+    .search-box button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .card-subtitle {
+      font-size: 1rem;
+      color: #6c757d;
+      margin-bottom: 12px;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Available Medicines</h2>
+
+    <form class="search-box" method="GET" action="/api/medicine/search">
+      <input type="text" name="q" placeholder="Search by name or salt..." />
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="card-grid">
+      <% if (medicines && medicines.length > 0) { %>
+        <% medicines.forEach(med => { %>
+          <div class="card">
+            <div class="card-title"><%= med.name %></div>
+            <div class="card-subtitle"><%= med.salt %></div>
+            <div class="card-text">
+              <p><strong>Price:</strong> ₹<%= med.price %></p>
+              <p><strong>Chemist:</strong> <%= med.createdBy.username %></p>
+              <p><strong>Address:</strong> <%= med.createdBy.address %></p>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No medicines found.</p>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

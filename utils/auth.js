@@ -29,6 +29,7 @@ function checkForAuthenticationCookie(cookieName){
         try{
             const userPayload = validateToken(tokenCookieName)
             req.user = userPayload
+            
         }
         catch(error){
            
@@ -38,9 +39,18 @@ function checkForAuthenticationCookie(cookieName){
     }
 
 }
+function requireAuth(req, res, next) {
+    if (!req.user) {
+        console.log(req.user)
+        return res.status(401).json({ message: "Unauthorized. Please log in." });
+        
+    }
+    next();
+}
+
 module.exports={
     createTokenUser,
     validateToken,
     checkForAuthenticationCookie,
-
+    requireAuth,
 }
