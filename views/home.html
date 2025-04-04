@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+
+    <title>Home page</title>
+    <style>
+
+    .pinyon-script-regular {
+    font-family:monospace;
+    font-weight: 400;
+    font-style: normal;
+    }
+
+   
+    :root {
+                --primary-color: #2a7fba;
+                --secondary-color: #f8f9fa;
+                --accent-color: #ff6b6b;
+                --text-color: #333;
+                --light-text: #6c757d;
+            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+body {
+            height:100vh;
+            width:100vw;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+}
+/* Hero Section */
+.inhero1 {
+    display:flex;
+    flex-direction: column;
+    /* justify-content:space-between; */
+    align-items: center;
+    padding: 40px 20px;
+    height:60vh;
+   }
+.hero{
+    display:flex;
+    flex-direction:row;
+    align-items: space-between;
+    background: hsla(106, 50%, 21%, 1);
+
+background: linear-gradient(45deg, hsla(106, 50%, 21%, 1) 0%, hsla(106, 74%, 49%, 1) 87%);
+
+background: -moz-linear-gradient(45deg, hsla(106, 50%, 21%, 1) 0%, hsla(106, 74%, 49%, 1) 87%);
+
+background: -webkit-linear-gradient(45deg, hsla(106, 50%, 21%, 1) 0%, hsla(106, 74%, 49%, 1) 87%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#28511B", endColorstr="#4BD820", GradientType=1 );
+
+}
+.inhero2{
+    height:60vh;
+    /* background: hsla(106, 74%, 49%, 1) 87%; */
+    }
+
+
+
+.subheading {
+    color:rgb(228, 255, 255);
+    font-size: 34px;
+    margin-bottom: 0px;
+}
+
+h1 {
+    color: #6ba64e;
+    font-size: 42px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.search{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.cta-button {
+    background-color: #b5d8a4;
+    color: rgb(3, 70, 22);
+    outline:none;
+    font-size: 20px;
+    padding: 12px 22px;
+    border: none;
+    border-radius:2rem;
+    cursor: pointer;
+    margin-top: 15px;
+    width:30%;
+    position:relative;
+}
+.material-symbols-outlined {
+    padding-top:10px;
+    background: transparent;
+    border-radius: 50%;
+    outline:none;
+    border:none;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+    }
+
+.cta-button:hover {
+    background-color: #a7c799;
+}
+
+#em-text{
+    color:rgb(228, 255, 255);
+    font-size:65px;
+}
+#home-text{
+    margin:0px;
+    padding:0px 0px;
+    color:rgb(228, 255, 255);
+    font-size:60px;
+}
+.doubleUnderline {
+  text-decoration:underline;
+  border-bottom: 1px solid rgb(228, 255, 255);
+}
+       /* Cards Section */
+       .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 4rem 5%;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            width: 22rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transition-duration: 0.5s;
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 15rem;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.1);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--green-dark);
+        }
+        
+        .card-text {
+            font-size: 1rem;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+.emergency-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .emergency-title {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .emergency-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        .emergency-button:hover {
+            background-color: #e05555;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0.5rem;
+        }
+        
+        .verified-badge::before {
+            content: "✓";
+            margin-right: 0.5rem;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem 0;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            border-top: 1px solid #e1e1e1;
+        }
+
+        .card {
+    width:22rem;
+    height:25rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* overflow: hidden; */
+    margin: auto;
+    text-align: left;
+}
+
+/* Card Image */
+.card-img {
+    width: 100%;
+    height:15rem;
+    object-fit: cover;
+}
+
+/* Card Body */
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="inhero1">
+            <p class="subheading pinyon-script-regular">Welcome to MediMap!!!</p>
+            <h1 id="home-text">Locate Pharmacy Near You <br></h1>
+            <!-- <div class="search"> <input type="text" placeholder="search medicines..." class="cta-button "><button class="material-symbols-outlined">search</button></input></div> -->
+            <button class="cta-button ">Get Started</button>
+        </div>
+        <div class="inhero2">
+            <img src="assets/pic4updated.png" alt="MediMap image">
+        </div>
+        
+    </section>
+    <div class="gallery">
+        <div class="card">
+            <img src="assets/pic1.jpeg" class="card-img" alt="Pharmacy">
+            <div class="card-body">
+                <h5 class="card-title">24/7 Availability</h5>
+                <p class="card-text">Find pharmacies that are open at any time of day or night, ensuring you get the medicines you need when you need them.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="assets/pic3.jpeg" class="card-img" alt="Medicine">
+            <div class="card-body">
+                <h5 class="card-title">Verified Products</h5>
+                <p class="card-text">All listed pharmacies provide certified and genuine medicines, giving you peace of mind about your purchases.</p>
+            </div>
+        </div>
+            <div class="card">
+                <img src="assets/pic2.jpeg" class="card-img" alt="Medicine Search">
+                <div class="card-body">
+                    <h3 class="card-title">Medicine Search</h3>
+                    <p class="card-text">Check availability of specific medicines at nearby pharmacies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
+ <!-- Emergency Section -->
+ <section class="emergency-section">
+    <h2 class="emergency-title">Need Emergency Medical Assistance?</h2>
+    <p class="emergency-text">Find nearby pharmacies open now and get the help you need immediately.</p>
+    <button class="emergency-button">
+        <i class="fas fa-map-marker-alt"></i> Find Nearest Pharmacy
+    </button>
+    
+    <div class="features-container">
+        <span class="feature-badge">
+            <i class="fas fa-clock"></i> 24/7 Availability
+        </span>
+        <span class="feature-badge">
+            <i class="fas fa-check-circle"></i> Certified Pharmacies
+        </span>
+        <span class="feature-badge">
+            <i class="fas fa-shield-alt"></i> Verified Products
+        </span>
+    </div>
+</section>
+
+<main>
+    <div class="features">
+        <span class="verified-badge">24/7 Availability</span>
+        <span class="verified-badge">Certified Pharmacies</span>
+        <span class="verified-badge">Verified Products</span>
+    </div>
+</main>
+
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <img src="assets/logo1.png" alt="MediMap Logo" style="height: 8rem; margin-bottom: 1rem;">
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="copyright">© 2025 MediMap. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>

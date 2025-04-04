@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+    <title>About MediMaps</title>
+    <style>
+        .pinyon-script-regular {
+            font-family: monospace;
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        :root {
+            --primary-color: #2a7fba;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --light-text: #6c757d;
+            --green-dark: #28511B;
+            --green-light: #4BD820;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        /* About Hero Section */
+        .about-hero {
+            background: linear-gradient(45deg, var(--green-dark) 0%, var(--green-light) 87%);
+            color: white;
+            padding: 2rem 2rem;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Problem/Solution Section */
+        .content-section {
+            padding: 4rem 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .section-block {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: var(--green-dark);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--green-light);
+        }
+        
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight-box {
+            background-color: rgba(75, 216, 32, 0.1);
+            border-left: 4px solid var(--green-light);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .impact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .impact-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .impact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .impact-item h3 {
+            color: var(--green-dark);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .impact-item h3::before {
+            content: "✓";
+            color: var(--green-light);
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 4rem 10%;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .team-members {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            width: 220px;
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--green-light);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            border-top: 1px solid #e1e1e1;
+            background: white;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--green-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--green-light);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: var(--green-dark);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--green-light);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 3rem 5%;
+            }
+            
+            .section-block {
+                padding: 1.5rem;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <section class="about-hero">
+        <h1>About MediMaps</h1>
+        <p class="pinyon-script-regular">"Bridging the gap between emergency medical needs and local pharmacy solutions..."</p>
+    </section>
+
+    <section class="content-section">
+        <div class="section-block">
+            <h2 class="section-title">The Problem We Solve</h2>
+            <p class="section-text">
+                In emergency situations, time is critical—especially when it comes to accessing life-saving medicines. Online pharmacy apps, though convenient, usually take an hour or more for delivery, which can be too late in urgent cases. This delay can lead to severe consequences, particularly in areas where immediate medical attention is needed.
+            </p>
+            <div class="highlight-box">
+                <p>Every minute counts when someone needs emergency medication. Traditional delivery systems often can't meet this urgent need.</p>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h2 class="section-title">Our Innovative Solution</h2>
+            <p class="section-text">
+                We propose a web-based platform that connects users to nearby local medical stores in real time. Instead of waiting for centralized pharmacy deliveries, our platform uses location-based services to identify local vendors within a short radius who have the required medicine in stock.
+            </p>
+            <p class="section-text">
+                Users can instantly place a request, and the nearest vendor can confirm availability and arrange for faster delivery or instant pickup—sometimes within 5-10 minutes. This revolutionary approach transforms how people access medicines in emergencies.
+            </p>
+        </div>
+
+        <div class="section-block">
+            <h2 class="section-title">Why MediMaps Matters</h2>
+            <div class="impact-list">
+                <div class="impact-item">
+                    <h3>Life-saving in emergencies</h3>
+                    <p>Reduces the risk of complications due to delay in accessing critical medications when every second counts.</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Empowers local pharmacies</h3>
+                    <p>Brings neighborhood pharmacies into the digital ecosystem and helps them compete with larger online platforms.</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Real-time inventory</h3>
+                    <p>Saves precious time by only showing medicines that are actually available nearby right now.</p>
+                </div>
+                <div class="impact-item">
+                    <h3>User-friendly interface</h3>
+                    <p>Quick, intuitive design focused on emergency use with priority filters and direct contact options.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h2 class="section-title">The Impact We Create</h2>
+            <p class="section-text">
+                MediMaps not only improves emergency healthcare access but also strengthens the local economy by integrating neighborhood vendors into digital healthcare solutions. We're creating a win-win situation where patients get faster access to medicines, and local pharmacies gain more visibility and customers.
+            </p>
+            <p class="section-text">
+                Our platform has the potential to save countless lives by reducing medication access time during emergencies, while simultaneously supporting small business owners in the pharmaceutical sector.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <img src="assets/logo1.png" alt="MediMap Logo" style="height: 8rem; margin-bottom: 1rem;">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">© 2025 MediMap. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
