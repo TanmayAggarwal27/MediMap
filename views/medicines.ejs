@@ -8,8 +8,16 @@
   <link rel="stylesheet" href="/medicines.css">
 </head>
 <body>
+  <%- include("logNav") %>
   <div class="container">
     <h2>Pharmaceutical Inventory</h2>
+
+  
+    
+    
+    
+    
+    
 
     <form class="search-box" method="GET" action="/all">
       <input type="text" name="q" placeholder="Search by medicine name or salt composition..." />
@@ -30,7 +38,7 @@
             <div class="card-text">
               <p><strong>Price:</strong> ₹<%= med.price %></p>
               <p><strong>Chemist:</strong> <%= med.createdBy.username %></p>
-              <p><strong>Phone:</strong> <%= med.createdBy.phoneNumber %></p>
+              <p><strong>Phone:</strong>+91-<%= med.createdBy.phoneNumber %></p>
               <p><strong>Address:</strong> <%= med.createdBy.address %></p>
             </div>
           </div>

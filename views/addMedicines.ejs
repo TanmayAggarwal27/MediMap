@@ -13,23 +13,79 @@
 
     <form action="/add" method="POST">
       <div class="medicine-list">
-        <% const medicines = [
-          { name: "Paracetamol 500mg", salt: "Paracetamol", price: 20 },
-          { name: "Metformin 500mg", salt: "Metformin", price: 35 },
+        <% 
+          const medicines = [
+          { name: "Crocin Advance", salt: "Paracetamol", price: 22 },
+          { name: "Calpol 650", salt: "Paracetamol", price: 25 },
+          { name: "Dolo 650", salt: "Paracetamol", price: 24 },
+          { name: "Metformin 500mg", salt: "Metformin", price: 30 },
+          { name: "Glyciphage SR 500", salt: "Metformin", price: 32 },
+          { name: "Glucophage XR", salt: "Metformin", price: 35 },
           { name: "Aspirin 100mg", salt: "Aspirin", price: 18 },
-          { name: "Amoxicillin 250mg", salt: "Amoxicillin", price: 25 }
-        ]; %>
+          { name: "Ecosprin 75", salt: "Aspirin", price: 20 },
+          { name: "Ascard 150", salt: "Aspirin", price: 22 },
+          { name: "Insulin Lispro", salt: "Insulin", price: 150 },
+          { name: "Insulin Glargine", salt: "Insulin", price: 180 },
+          { name: "Insulin Aspart", salt: "Insulin", price: 160 },
+          { name: "Amoxicillin 250mg", salt: "Amoxicillin", price: 25 },
+          { name: "Mox 500", salt: "Amoxicillin", price: 30 },
+          { name: "Trimox", salt: "Amoxicillin", price: 28 },
 
-        <% medicines.forEach((med, index) => { %>
-          <label class="medicine-card">
-            <input type="checkbox" id="med-<%= index %>" name="medicines[]" value="<%= JSON.stringify(med) %>">
-            <div class="checkmark"></div>
-            <div class="card-content">
-              <div class="medicine-name"><%= med.name %></div>
-              <div class="medicine-salt">Salt: <%= med.salt %></div>
-              <div class="medicine-price">Price: ₹<%= med.price %></div>
-            </div>
-          </label>
+          { name: "Brufen 200", salt: "Ibuprofen", price: 20 },
+          { name: "Ibugesic Plus", salt: "Ibuprofen", price: 23 },
+          { name: "Ibuzac", salt: "Ibuprofen", price: 22 },
+          { name: "Atorvastatin 10mg", salt: "Atorvastatin", price: 32 },
+          { name: "Lipitor 10", salt: "Atorvastatin", price: 35 },
+          { name: "Tonact 10", salt: "Atorvastatin", price: 33 },
+          { name: "Ciprofloxacin 500mg", salt: "Ciprofloxacin", price: 27 },
+          { name: "Ciplox 500", salt: "Ciprofloxacin", price: 30 },
+          { name: "Cifran 500", salt: "Ciprofloxacin", price: 29 },
+          { name: "Cetirizine 10mg", salt: "Cetirizine", price: 15 },
+          { name: "Okacet", salt: "Cetirizine", price: 18 },
+          { name: "Cetzine", salt: "Cetirizine", price: 16 },
+          { name: "Ranitidine 150mg", salt: "Ranitidine", price: 19 },
+          { name: "Zinetac 150", salt: "Ranitidine", price: 21 },
+          { name: "Aciloc 150", salt: "Ranitidine", price: 20 },
+          { name: "Omeprazole 20mg", salt: "Omeprazole", price: 22 },
+          { name: "Omez 20", salt: "Omeprazole", price: 24 },
+          { name: "Zosec 20", salt: "Omeprazole", price: 23 },
+          { name: "Pantoprazole 40mg", salt: "Pantoprazole", price: 26 },
+          { name: "Pantocid 40", salt: "Pantoprazole", price: 28 },
+          { name: "Pan 40", salt: "Pantoprazole", price: 27 },
+          { name: "Salbutamol Inhaler", salt: "Salbutamol", price: 90 },
+          { name: "Asthalin Inhaler", salt: "Salbutamol", price: 95 },
+          { name: "Ventolin Inhaler", salt: "Salbutamol", price: 92 },
+          { name: "Hydrocortisone Injection", salt: "Hydrocortisone", price: 55 },
+          { name: "Wycort Injection", salt: "Hydrocortisone", price: 60 },
+          { name: "Betnesol Injection", salt: "Hydrocortisone", price: 58 },
+          { name: "Adrenaline Injection", salt: "Epinephrine", price: 65 },
+          { name: "EpiPen", salt: "Epinephrine", price: 70 },
+          { name: "Epishot", salt: "Epinephrine", price: 68 },
+          { name: "ORS Sachet Orange", salt: "Oral Rehydration Salts", price: 10 },
+          { name: "Electral Sachet", salt: "Oral Rehydration Salts", price: 12 },
+          { name: "Enerzal Rehydration", salt: "Oral Rehydration Salts", price: 14 }
+          
+          ];
+
+          const groupedMedicines = medicines.reduce((acc, med) => {
+            acc[med.salt] = acc[med.salt] || [];
+            acc[med.salt].push(med);
+            return acc;
+          }, {});
+        %>
+
+        <% Object.keys(groupedMedicines).forEach(salt => { %>
+          <h3><%= salt %></h3> <!-- Group heading for each salt -->
+          <% groupedMedicines[salt].forEach((med, index) => { %>
+            <label class="medicine-card">
+              <input type="checkbox" id="med-<%= index %>" name="medicines[]" value="<%= JSON.stringify(med) %>">
+              <div class="checkmark"></div>
+              <div class="card-content">
+                <div class="medicine-name"><%= med.name %></div>
+                <div class="medicine-price">Price: ₹<%= med.price %></div>
+              </div>
+            </label>
+          <% }) %>
         <% }) %>
       </div>
 

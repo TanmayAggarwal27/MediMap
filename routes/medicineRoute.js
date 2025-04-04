@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Medicine = require("../models/medicineSchema");
+const Medicine = require("../models/medicineSchema.js");
 const user = require("../models/authSchema.js")
 const {validateToken,checkForAuthenticationCookie, requireAuth }= require("../utils/auth.js")
 
@@ -62,7 +62,7 @@ router.get("/all", async (req, res) => {
             { name: { $regex: query, $options: "i" } },
             { salt: { $regex: query, $options: "i" } }
           ]
-        }).populate("createdBy", "username email address");
+        }).populate("createdBy", "username email address phoneNumber");
       } else {
         meds = await Medicine.find().populate("createdBy", "username email address phoneNumber");
       }
@@ -95,5 +95,8 @@ router.get("/search", async (req, res) => {
     res.status(500).json({ message: "Search failed", error: err.message });
   }
 });
+
+
+
 
 module.exports = router;
