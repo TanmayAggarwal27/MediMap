@@ -28,7 +28,9 @@ router.post("/signup", async (req, res) => {
 
 // Login
 
-
+router.get("/login",(req,res)=>{
+    res.render("loginPage")
+})
 router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -46,10 +48,10 @@ router.post("/login", async (req, res) => {
 
         const token = await tokenGenerate.createTokenUser(user);
         res.cookie("token", token)
-        res.status(200).json({message:"account created"})
+        res.redirect("/all")
     } catch (error) {
         console.log(error);
-        return res.render("/login", {
+        return res.render("login", {
             error: "Incorrect Email or Password",
         });
     }

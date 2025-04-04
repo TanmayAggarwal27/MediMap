@@ -3,91 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Medicines</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .search-box {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    .search-box input[type="text"] {
-      padding: 10px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 4px 0 0 4px;
-      outline: none;
-    }
-
-    .search-box button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
-    }
-
-    .card-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .card-subtitle {
-      font-size: 1rem;
-      color: #6c757d;
-      margin-bottom: 12px;
-    }
-
-    .card-text {
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+  <title>Pharmaceutical Inventory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/medicines.css">
 </head>
 <body>
   <div class="container">
-    <h2>Available Medicines</h2>
+    <h2>Pharmaceutical Inventory</h2>
 
-    <form class="search-box" method="GET" action="/api/medicine/search">
-      <input type="text" name="q" placeholder="Search by name or salt..." />
-      <button type="submit">Search</button>
+    <form class="search-box" method="GET" action="/api/medicine/all">
+      <input type="text" name="q" placeholder="Search by medicine name or salt composition..." />
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
     </form>
 
     <div class="card-grid">
@@ -104,7 +35,9 @@
           </div>
         <% }) %>
       <% } else { %>
-        <p>No medicines found.</p>
+        <div class="no-results">
+          <p>No medicines found matching your criteria.</p>
+        </div>
       <% } %>
     </div>
   </div>

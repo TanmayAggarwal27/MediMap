@@ -9,15 +9,15 @@ const {checkForAuthenticationCookie} = require("./utils/auth.js")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
 
 app.set("view engine","ejs")
 app.set("views", path.join(__dirname, "views"));
 
-app.use("/api/auth",authRouter)
-app.use("/api/medicine",mediRouter)
+app.use("/",authRouter)
+app.use("/",mediRouter)
 
 
 

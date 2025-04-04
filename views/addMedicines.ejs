@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Medicines | Pharmaceutical Inventory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/addMedicine.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Add Medicines to Inventory</h2>
+
+    <form action="/api/medicine/add" method="POST">
+      <div class="medicine-list">
+        <% const medicines = [
+          { name: "Paracetamol 500mg", salt: "Paracetamol", price: 20 },
+          { name: "Metformin 500mg", salt: "Metformin", price: 35 },
+          { name: "Aspirin 100mg", salt: "Aspirin", price: 18 },
+          { name: "Amoxicillin 250mg", salt: "Amoxicillin", price: 25 }
+        ]; %>
+
+        <% medicines.forEach((med, index) => { %>
+          <label class="medicine-card">
+            <input type="checkbox" id="med-<%= index %>" name="medicines[]" value="<%= JSON.stringify(med) %>">
+            <div class="checkmark"></div>
+            <div class="card-content">
+              <div class="medicine-name"><%= med.name %></div>
+              <div class="medicine-salt">Salt: <%= med.salt %></div>
+              <div class="medicine-price">Price: ₹<%= med.price %></div>
+            </div>
+          </label>
+        <% }) %>
+      </div>
+
+      <button type="submit" class="submit-btn">Add Selected Medicines</button>
+    </form>
+  </div>
+
+  <script>
+    // Convert selected checkbox string values (JSON) into proper array on form submit
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (e) {
+      const selected = [...form.querySelectorAll('input[type="checkbox"]:checked')];
+      const formatted = selected.map(cb => JSON.parse(cb.value));
+
+      // Clear existing form data and add custom formatted fields
+      form.innerHTML = "";
+
+      formatted.forEach((med, i) => {
+        form.insertAdjacentHTML("beforeend", `
+          <input type="hidden" name="medicines[${i}][name]" value="${med.name}" />
+          <input type="hidden" name="medicines[${i}][salt]" value="${med.salt}" />
+          <input type="hidden" name="medicines[${i}][price]" value="${med.price}" />
+        `);
+      });
+
+      // Re-add the submit button to actually submit the form
+      form.insertAdjacentHTML("beforeend", `<button type="submit" class="submit-btn">Submit</button>`);
+    });
+  </script>
+</body>
+</html>

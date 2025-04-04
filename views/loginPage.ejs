@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediMap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/loginPage.css">
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <!-- Floating molecules -->
+    <div class="molecule" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="molecule" style="top: 70%; left: 80%; animation-delay: 2s;"></div>
+    <div class="molecule" style="top: 40%; left: 30%; animation-delay: 4s;"></div>
+    <div class="molecule" style="top: 60%; left: 60%; animation-delay: 6s;"></div>
+    
+    <div class="login-container">
+        <div class="pharma-icon">
+            <i class="fas fa-pills"></i>
+        </div>
+        <h1>Welcome to MediMap</h1>
+        <p class="subtitle">Sign in to your seller account to manage pharmaceutical inventory and orders</p>
+        
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="email">Professional Email</label>
+                <input type="email" id="email" name="email" placeholder="your@pharmacy.com" required>
+                <i class="input-icon fas fa-envelope"></i>
+            </div>
+            
+            <div class="form-group" >
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <i class="input-icon fas"></i>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="#">Forgot password? <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+            
+            <div class="divider">or continue with</div>
+            
+            <div class="social-login">
+                <button type="button" class="btn btn-social btn-google">
+                    <i class="fab fa-google"></i>
+                    Google Account
+                </button>
+                
+                <button type="button" class="btn btn-social btn-apple">
+                    <i class="fab fa-apple"></i>
+                    Apple ID
+                </button>
+            </div>
+            
+            <p class="signup-link">New to MediMap?<a href="#">Create account</a></p>
+        </form>
+    </div>
+
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.querySelector('body');
+            for (let i = 0; i < 8; i++) {
+                const molecule = document.createElement('div');
+                molecule.classList.add('molecule');
+                molecule.style.left = `${Math.random() * 100}%`;
+                molecule.style.top = `${Math.random() * 100}%`;
+                molecule.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                molecule.style.animationDelay = `${Math.random() * 5}s`;
+                molecule.style.opacity = Math.random() * 0.3 + 0.1;
+                body.appendChild(molecule);
+            }
+        });
+    </script>
+</body>
+</html>

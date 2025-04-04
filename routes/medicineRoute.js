@@ -4,37 +4,65 @@ const Medicine = require("../models/medicineSchema");
 const user = require("../models/authSchema.js")
 const {validateToken,checkForAuthenticationCookie, requireAuth }= require("../utils/auth.js")
 
-router.post("/add",requireAuth, async (req, res) => {
-  try {
-    const { name, salt, price} = req.body;
-    const chemistId = req.user._id;
 
-    if (!name || !salt || !price ) {
-      return res.status(400).json({ message: "All fields are required." });
+router.get("/add", requireAuth,(req, res) => {
+    res.render("addMedicines"); 
+  });
+router.post("/add", requireAuth, async (req, res) => {
+    try {
+      const medicines = req.body.medicines; // array of selected medicines
+      const chemistId = req.user._id;
+  
+      if (!medicines || medicines.length === 0) {
+        return res.status(400).json({ message: "No medicines selected." });
+      }
+  
+      const insertedMeds = [];
+  
+      for (const med of medicines) {
+        const { name, salt, price } = med;
+  
+        if (!name || !salt || !price) continue;
+  
+        const newMed = new Medicine({
+          name,
+          salt,
+          price,
+          createdBy: chemistId,
+        });
+  
+        await newMed.save();
+        insertedMeds.push(newMed);
+      }
+  
+      res.status(201).json({ message: "Medicines added successfully", medicines: insertedMeds });
+    } catch (err) {
+      res.status(500).json({ message: "Something went wrong", error: err.message });
     }
-
-    const newMedicine = new Medicine({ 
-        name, 
-        salt, 
-        price, 
-        createdBy:chemistId });
-    await newMedicine.save();
-    res.status(201).json({ message: "Medicine added successfully", medicine: newMedicine });
-  } catch (err) {
-    res.status(500).json({ message: "Something went wrong", error: err.message });
-  }
-});
-
+  });
+  
 router.get("/all", async (req, res) => {
-  try {
-    const meds = await Medicine.find().populate("createdBy", "username email address");
-    console.log(meds)
-    res.render("medicines", { medicines: meds });
-  } catch (err) {
-    res.status(500).json({ message: "Failed to fetch medicines", error: err.message });
-  }
-});
-
+    try {
+      const query = req.query.q;
+      let meds;
+  
+      if (query) {
+        meds = await Medicine.find({
+          $or: [
+            { name: { $regex: query, $options: "i" } },
+            { salt: { $regex: query, $options: "i" } }
+          ]
+        }).populate("createdBy", "username email address");
+      } else {
+        meds = await Medicine.find().populate("createdBy", "username email address");
+      }
+  
+      res.render("medicines", { medicines: meds });
+    } catch (err) {
+      
+    }
+  });
+  
 
 
 router.get("/search", async (req, res) => {
