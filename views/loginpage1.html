@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaConnect | Seller Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --primary-dark: #2667cc;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #06d6a0;
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --card-border: 1px solid rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        
+        }
+
+        .background-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(58, 134, 255, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(131, 56, 236, 0.08) 0%, transparent 25%);
+            z-index: -1;
+        }
+
+        .login-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: var(--card-border);
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 480px;
+            padding: 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        .login-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .pharma-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 32px;
+            box-shadow: 0 8px 24px rgba(58, 134, 255, 0.3);
+            transform: rotate(0deg);
+            transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+        .pharma-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        h1 {
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: var(--gray);
+            margin-bottom: 32px;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+            animation: fadeInUp 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: rgba(248, 249, 250, 0.8);
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.1);
+            outline: none;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 18px;
+            top: 42px;
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        }
+
+        .forgot-password a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .forgot-password a:hover {
+            color: var(--secondary);
+        }
+
+        .forgot-password a i {
+            margin-left: 6px;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .forgot-password a:hover i {
+            transform: translateX(3px);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInUp 0.6s 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(58, 134, 255, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 28px 0;
+            color: var(--gray);
+            font-size: 13px;
+            font-weight: 500;
+            animation: fadeInUp 0.6s 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .divider::before {
+            margin-right: 16px;
+        }
+
+        .divider::after {
+            margin-left: 16px;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 28px;
+            animation: fadeInUp 0.6s 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: white;
+            border: 2px solid #e9ecef;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn-social:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-google {
+            color: #DB4437;
+        }
+
+        .btn-google:hover {
+            border-color: rgba(219, 68, 55, 0.3);
+            background-color: rgba(219, 68, 55, 0.05);
+        }
+
+        .btn-apple {
+            color: #000;
+        }
+
+        .btn-apple:hover {
+            border-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .signup-link {
+            font-size: 15px;
+            color: var(--gray);
+            animation: fadeInUp 0.6s 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        }
+
+        .signup-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-left: 6px;
+        }
+
+        .signup-link a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Floating molecules animation */
+        .molecule {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(58, 134, 255, 0.2);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 15s infinite linear;
+        }
+
+        .molecule::before, .molecule::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: inherit;
+        }
+
+        .molecule::before {
+            transform: translateX(-20px);
+        }
+
+        .molecule::after {
+            transform: translateX(20px);
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, -1000px) rotate(720deg); }
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 40px 28px;
+                margin: 0 20px;
+                border-radius: 20px;
+            }
+
+            .pharma-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <!-- Floating molecules -->
+    <div class="molecule" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="molecule" style="top: 70%; left: 80%; animation-delay: 2s;"></div>
+    <div class="molecule" style="top: 40%; left: 30%; animation-delay: 4s;"></div>
+    <div class="molecule" style="top: 60%; left: 60%; animation-delay: 6s;"></div>
+    
+    <div class="login-container">
+        <div class="pharma-icon">
+            <i class="fas fa-pills"></i>
+        </div>
+        <h1>Welcome to MediMap</h1>
+        <p class="subtitle">Sign in to your seller account to manage pharmaceutical inventory and orders</p>
+        
+        <form>
+            <div class="form-group">
+                <label for="email">Professional Email</label>
+                <input type="email" id="email" placeholder="your@pharmacy.com" required>
+                <i class="input-icon fas fa-envelope"></i>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <i class="input-icon fas"></i>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="#">Forgot password? <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+            
+            <div class="divider">or continue with</div>
+            
+            <div class="social-login">
+                <button type="button" class="btn btn-social btn-google">
+                    <i class="fab fa-google"></i>
+                    Google Account
+                </button>
+                
+                <button type="button" class="btn btn-social btn-apple">
+                    <i class="fab fa-apple"></i>
+                    Apple ID
+                </button>
+            </div>
+            
+            <p class="signup-link">New to PharmaConnect?<a href="#">Create account</a></p>
+        </form>
+    </div>
+
+    <script>
+        // Create additional floating molecules
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.querySelector('body');
+            for (let i = 0; i < 8; i++) {
+                const molecule = document.createElement('div');
+                molecule.classList.add('molecule');
+                molecule.style.left = `${Math.random() * 100}%`;
+                molecule.style.top = `${Math.random() * 100}%`;
+                molecule.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                molecule.style.animationDelay = `${Math.random() * 5}s`;
+                molecule.style.opacity = Math.random() * 0.3 + 0.1;
+                body.appendChild(molecule);
+            }
+        });
+    </script>
+</body>
+</html>
