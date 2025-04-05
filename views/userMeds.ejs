@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Medicines | PharmaInventory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/userMeds.css">
+</head>
+<body>
+    <%- include("navbar") %>
+    <div class="container">
+        <h2>Your Uploaded Medicines</h2>
+
+        <div class="card-grid">
+            <% if (medicines.length > 0) { %>
+                <% medicines.forEach(med => { %>
+                    <div class="card">
+                        <div class="card-title"><%= med.name %></div>
+                        <div class="card-subtitle"><%= med.salt %></div>
+                        <div class="card-text">
+                            <p>₹<%= med.price %></p>
+                            <form method="POST" action="/delete-medicine/<%= med._id %>">
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="empty-state">
+                    <p>You haven't uploaded any medicines yet.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

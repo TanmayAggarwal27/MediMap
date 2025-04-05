@@ -107,6 +107,25 @@ router.get("/search", async (req, res) => {
   }
 });
 
+router.get('/my-medicines', requireAuth, async (req, res) => {
+  try {
+    const medicines = await Medicine.find({ createdBy: req.user._id });
+    res.render('userMeds', { medicines });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+router.post('/delete-medicine/:id', requireAuth, async (req, res) => {
+  try {
+    await Medicine.findOneAndDelete({ _id: req.params.id, createdBy: req.user._id });
+    res.redirect('/my-medicines');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
 
 
 

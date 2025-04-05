@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NavBar</title>
-    <link rel="stylesheet" href="/navbar.css">
-    
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navbar</title>
+  <link rel="stylesheet" href="/navbar.css">
+
 </head>
+
 <body>
-    
-    <nav class="navbar">
-        <div class="logo">
-            <img src="assets/logo1.png" alt="MediMaps Logo">
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/"><img src="/assets/logo1.png" alt="MediMaps Logo"></a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/all">View Stores</a></li>
+
+      <% if (!user) { %>
+        <a href="/signup"><button class="signupBtn">Sign Up</button></a>
+        <a href="/login"><button class="loginBtn">Login</button></a>
+      <% } else { %>
+        <a href="/add"><button class="btn">Add Medicines</button></a>
+        
+        <div class="dropdown">
+           
+          <button class="dropbtn"><%= user.username %> </button>
+          <div class="dropdown-content">
+            <a href="/my-medicines">My Medicines</a>
+            <form action="/logout" method="POST">
+              <button type="submit">Logout</button>
+            </form>
+          </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="/" class="active">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <a href="/signup"><button class="signupBtn">Sign Up</button></a>
-            <a href="/login"><button class="loginBtn">Login</button></a>
-        </ul>
-    </nav>
-
-
-
+      <% } %>
+    </ul>
+  </nav>
 </body>
 </html>
