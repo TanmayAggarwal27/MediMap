@@ -51,25 +51,36 @@ router.get("/add", requireAuth,(req, res) => {
   });
   
   
-router.get("/all", async (req, res) => {
+  router.get("/all", async (req, res) => {
     try {
       const query = req.query.q;
-      let meds;
+      const pincode = req.query.pincode;
+      let filter = {};
   
       if (query) {
-        meds = await Medicine.find({
-          $or: [
-            { name: { $regex: query, $options: "i" } },
-            { salt: { $regex: query, $options: "i" } }
-          ]
-        }).populate("createdBy", "username email address phoneNumber");
-      } else {
-        meds = await Medicine.find().populate("createdBy", "username email address phoneNumber");
+        filter.$or = [
+          { name: { $regex: query, $options: "i" } },
+          { salt: { $regex: query, $options: "i" } }
+        ];
+      }
+  
+      // If pincode is provided, add nested filter for createdBy.pincode
+      let meds = await Medicine.find(filter)
+        .populate({
+          path: "createdBy",
+          select: "username email address phoneNumber pincode",
+          match: pincode ? { pincode } : undefined,
+        });
+  
+      // Remove medicines where createdBy is null due to pincode mismatch
+      if (pincode) {
+        meds = meds.filter(med => med.createdBy !== null);
       }
   
       res.render("medicines", { medicines: meds });
     } catch (err) {
-      
+      console.error("Error fetching medicines:", err);
+      res.status(500).send("Server error");
     }
   });
   
