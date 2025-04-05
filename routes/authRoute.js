@@ -10,6 +10,9 @@ const tokenGenerate = require("../utils/auth");
 router.get("/signup",(req,res)=>{
     res.render("signupPage")
 })
+router.get("/login",(req,res)=>{
+    res.render("loginPage")
+})
 router.post("/signup", async (req, res) => {
     const { username, email, password,address,pincode,phoneNumber } = req.body;
     let user = await userData.findOne({ email });
@@ -32,9 +35,7 @@ router.post("/signup", async (req, res) => {
 
 // Login
 
-router.get("/login",(req,res)=>{
-    res.render("loginPage")
-})
+
 router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
