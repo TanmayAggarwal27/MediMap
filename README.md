@@ -108,7 +108,7 @@ Made with ❤️ by Tanmay Aggarwal
 📫 Email: tanmayagg.2005@gmail.com
 
 Made with ❤️ by Akshat Gupta  
-📫 Email: itz.akshat03@gmail.com
+📫 Email: akshatx03x@gmail.com
 
 Made with ❤️ by Kunj Gupta  
 📫 Email: guptakunj029@gmail.com
